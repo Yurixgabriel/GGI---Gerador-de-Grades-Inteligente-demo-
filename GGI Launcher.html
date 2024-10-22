@@ -5,40 +5,60 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>DashBoard - GGI</title>
         <link rel="stylesheet" href="./System/css/Style.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     </head>
 
     <body>
         <!--DashBoard-->
-        <div class="box1">
-            <a href="./System/Instruções.html">Instruções</a>
+        <div class="navBar">
             <img src="" alt="Logo_918">
+
+            <div>
+                <p><span></span>PASSOS<span></span></p>
+                <button>Passo 1</button>
+                <button>Passo 2</button>
+                <button>Passo 3</button>
+                <button>Passo 4</button>
+            </div>
+
+            <div>
+                <button>Gerar Grade</button>
+                <button id="exportBtn">Exportar para PDF</button>
+            </div>
+
+            <a href="./System/Instruções.html">Instruções</a>
         </div>
 
-        <main class="box2">
-            <ul class="listGrades">
-                <li id="listVazia">
-                    <p>Crie sua primeira grade!</p>
-                </li>
-            </ul>
-
-            <section class="menu">
-                <span></span>
-                <div class="menuBtns">
-                    <button><</button>
-                    <button>+</button>
-                    <button>></button>
-                </div>
-                <span></span>
-            </section>
-        </main>
+        <div id="grade">
+            <div class="grade">
+                <p>teste1</p>
+            </div>
+            <div class="grade">
+                <p>teste2</p>
+            </div>
+            <div class="grade">
+                <p>teste3</p>
+            </div>
+        </div>
 
         <!--Janelas Modal-->
-        <div id="grade">
+        <div>
+            
+        </div>
+
+        <div>
 
         </div>
 
-        <div id="passosGrade">
-
+        <div>
+            
         </div>
+
+        <div>
+            
+        </div>
+        
+        <script src="./System/js/exportPDF.js"></script>
     </body> 
 </html>

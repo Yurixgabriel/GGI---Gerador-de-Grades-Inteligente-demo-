@@ -5,36 +5,15 @@
 }
 
 body {
-    display: grid;
-    grid-template-rows: 5% 95%;
     width: 100vw;
     height: 100vh;
+    display: grid;
+    grid-template-columns: 10% 90%;
+    grid-template-rows: 100%;
     background: whitesmoke;
 }
 
-.box1 {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.box1 a {
-    margin-left: 10px;
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: rgb(194, 193, 193);
-    font-weight: bold;
-    transition: 0.3s;
-    cursor: pointer;
-}
-.box1 a:hover {
-    color: blue;
-    margin-left: 16px;
-}
-
-.box2 {
+.navBar {
     width: 100%;
     height: 100%;
     display: flex;
@@ -43,79 +22,13 @@ body {
     justify-content: center;
 }
 
-.listGrades {
-    list-style: none;
+
+
+#grade {
     width: 100%;
-    height: 40%;
-    margin-top: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.listGrades li {
-    width: 30%;
-    height: 100%;
-    border: 3px solid rgb(194, 193, 193);
-    border-radius: 10px;
-}
-
-#listVazia {
-    width: 25%;
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
-}
-#listVazia p {
-    width: 40%;
-    text-align: center;
-    font-size: 18px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    color: rgb(194, 193, 193);
-}
-
-.menu {
-    width: 80%;
-    height: 10%;
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.menu span {
-    width: 30%;
-    height: 3px;
-    margin: 0px 60px;
-    background: rgb(194, 193, 193);
-    border-radius: 40%;
-}
-
-.menuBtns {
-    width: 14%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.menuBtns button {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    border-radius: 50%;
-    background: rgb(194, 193, 193);
-    color: whitesmoke;
-    transition: 0.5s;
-    cursor: pointer;
-}
-.menuBtns button:hover {
-    background: blue;
-    color: aliceblue;
+    justify-content: start;
 }
 
