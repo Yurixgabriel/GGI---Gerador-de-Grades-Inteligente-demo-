@@ -1,3 +1,16 @@
+@font-face {
+    font-family: 'Berlin Sans FB Bold';
+    src: url('Berlin Sans FB Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Berlin Sans FB Regular';
+    src: url('Berlin Sans FB Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 *{
     margin: 0%;
     padding: 0%;
@@ -66,8 +79,7 @@ body {
 }
 
 .btnPassos div p {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
+    font-family: 'Berlin Sans FB Bold';
     font-size: 14px;
     letter-spacing: 2px;
     color: #064469;
@@ -80,8 +92,7 @@ body {
     background: rgb(188, 188, 188);
     border: none;
     border-radius: 10px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
+    font-family: 'Berlin Sans FB Bold';
     font-size: 16px;
     color: rgb(230, 230, 230);
     cursor: pointer;
@@ -91,7 +102,7 @@ body {
     background: #5790AB;
 }
 .btnPassos .preenchido {
-    background: #316725;
+    background: #329D9C;
 }
 
 .btnPassos .line {
@@ -111,12 +122,13 @@ body {
 }
 
 #exportBtn {
-    background: #5790AB;
+    background: none;
     border: 3px solid #5790AB;
+    color: #5790AB;
 }
 #exportBtn:hover {
-    background: none;
-    color: #5790AB;
+    background: #5790AB;
+    color: rgb(230, 230, 230);
 }
 
 .btnInstr {
@@ -131,8 +143,7 @@ body {
     width: 100%;
     border: none;
     background: none;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
+    font-family: 'Berlin Sans FB Bold';
     font-size: 14px;
     color: rgb(176, 176, 176);
     transition: 0.3s;
@@ -157,6 +168,5 @@ body {
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: start;
+    overflow: hidden;
 }
-
