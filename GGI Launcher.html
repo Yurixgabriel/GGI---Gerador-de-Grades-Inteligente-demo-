@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>DashBoard - GGI</title>
         <link rel="stylesheet" href="./System/css/Style.css">
+        <link rel="stylesheet" href="./System/css/modal.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     </head>
@@ -18,10 +19,10 @@
                     <p>PASSOS</p>
                     <div></div>
                 </div>
-                <button>Passo 1</button>
-                <button>Passo 2</button>
-                <button>Passo 3</button>
-                <button>Passo 4</button>
+                <button class="btnModalPasso1">Passo 1</button>
+                <button class="btnModalPasso2">Passo 2</button>
+                <button class="btnModalPasso3">Passo 3</button>
+                <button class="btnModalPasso4">Passo 4</button>
                 <span class="line"></span>
                 <button id="gerarGradeBtn">Gerar Grade</button>
                 <button id="exportBtn">Exportar para PDF</button>
@@ -47,30 +48,67 @@
         </div>
 
         <!--Janelas Modal-->
-        <div id="modalPasso1">
-            
+        <div id="modalPasso1" class="modal_container">
+            <div class="bordinha">
+                <div class="sub-modal">
+                    <button class="fechar">X</button>
+
+
+                </div>
+            </div>
         </div>
 
-        <div id="modalPasso1">
+        <div id="modalPasso2" class="modal_container">
+            <div class="bordinha">
+                <div class="sub-modal">
+                    <button class="fechar">X</button>
 
+
+                </div>
+            </div>
         </div>
 
-        <div id="modalPasso1">
-            
+        <div id="modalPasso3" class="modal_container">
+            <div class="bordinha">
+                <div class="sub-modal">
+                    <button class="fechar">X</button>
+
+
+                </div>
+            </div>
         </div>
 
-        <div id="modalPasso1">
-            
+        <div id="modalPasso4" class="modal_container">
+            <div class="bordinha">
+                <div class="sub-modal">
+                    <button class="fechar">X</button>
+
+
+                </div>
+            </div>
         </div>
 
-        <div id="alerta">
+        <div id="alerta" class="modal_container">
+            <div class="bordinha">
+                <div class="sub-modal">
+                    <button class="fechar">X</button>
 
+
+                </div>
+            </div>
         </div>
 
-        <div id="manual">
+        <div id="manual" class="modal_container">
+            <div class="bordinha">
+                <div class="sub-modal">
+                    <button class="fechar">X</button>
 
+
+                </div>
+            </div>
         </div>
         
         <script src="./System/js/exportPDF.js"></script>
+        <script src="./System/js/modal.js"></script>
     </body> 
 </html>
