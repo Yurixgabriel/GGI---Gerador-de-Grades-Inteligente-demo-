@@ -8,21 +8,137 @@ body {
     width: 100vw;
     height: 100vh;
     display: grid;
-    grid-template-columns: 10% 90%;
+    grid-template-columns: 24% 76%;
     grid-template-rows: 100%;
+    justify-items: center;
+    align-items: center;
     background: whitesmoke;
 }
 
 .navBar {
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background: rgb(230, 230, 230);
+    border-radius: 20px;
+}
+
+.navBar img {
+    width: 70px;
+}
+
+.btnPassos {
+    width: 80%;
+    height: auto;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
+.btnPassos div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
+.btnPassos div div {
+    width: 30%;
+    height: 2px;
+    background: #064469;
+}
+
+.btnPassos div p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #064469;
+}
+
+.btnPassos button {
+    width: 100%;
+    height: 50px;
+    margin: 4px 0px;
+    background: rgb(188, 188, 188);
+    border: none;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    color: rgb(230, 230, 230);
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btnPassos button:hover {
+    background: #5790AB;
+}
+.btnPassos .preenchido {
+    background: #316725;
+}
+
+.btnPassos .line {
+    width: 100%;
+    margin: 6px 0px;
+    height: 2px;
+    background: #064469;
+}
+
+#gerarGradeBtn {
+    background: #064469;
+    border: 3px solid #064469;
+}
+#gerarGradeBtn:hover {
+    background: none;
+    color: #064469
+}
+
+#exportBtn {
+    background: #5790AB;
+    border: 3px solid #5790AB;
+}
+#exportBtn:hover {
+    background: none;
+    color: #5790AB;
+}
+
+.btnInstr {
+    width: 80%;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#btnInstrucao {
+    width: 100%;
+    border: none;
+    background: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    color: rgb(176, 176, 176);
+    transition: 0.3s;
+    cursor: pointer;
+}
+.btnInstr div {
+    width: 0%;
+    height: 1px;
+    background: #064469;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.btnInstr:hover div {
+    width: 100%;
+}
+.btnInstr:hover #btnInstrucao {
+    color: #064469;
+}
 
 #grade {
     width: 100%;

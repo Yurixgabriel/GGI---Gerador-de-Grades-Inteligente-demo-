@@ -12,22 +12,26 @@
     <body>
         <!--DashBoard-->
         <div class="navBar">
-            <img src="" alt="Logo_918">
-
-            <div>
-                <p><span></span>PASSOS<span></span></p>
+            <div class="btnPassos">
+                <div>
+                    <div></div>
+                    <p>PASSOS</p>
+                    <div></div>
+                </div>
                 <button>Passo 1</button>
                 <button>Passo 2</button>
                 <button>Passo 3</button>
                 <button>Passo 4</button>
-            </div>
-
-            <div>
-                <button>Gerar Grade</button>
+                <span class="line"></span>
+                <button id="gerarGradeBtn">Gerar Grade</button>
                 <button id="exportBtn">Exportar para PDF</button>
             </div>
 
-            <a href="./System/Instruções.html">Instruções</a>
+            <img src="./System/img/logo 918.png" alt="Logo_918">
+            <div class="btnInstr">
+                <button id="btnInstrucao">Manual de Uso</button>
+                <div></div>
+            </div>
         </div>
 
         <div id="grade">
@@ -43,20 +47,28 @@
         </div>
 
         <!--Janelas Modal-->
-        <div>
+        <div id="modalPasso1">
             
         </div>
 
-        <div>
+        <div id="modalPasso1">
 
         </div>
 
-        <div>
+        <div id="modalPasso1">
             
         </div>
 
-        <div>
+        <div id="modalPasso1">
             
+        </div>
+
+        <div id="alerta">
+
+        </div>
+
+        <div id="manual">
+
         </div>
         
         <script src="./System/js/exportPDF.js"></script>
