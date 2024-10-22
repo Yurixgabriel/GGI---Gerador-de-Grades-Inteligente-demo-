@@ -23,7 +23,7 @@ document.getElementById('exportBtn').addEventListener('click', function() {
         
         // Salva o PDF após a última grade
         if (index === grades.length - 1) {
-          doc.save("grades.pdf");
+          doc.save("Grade_Horária(GGI.918).pdf");
         }
       });
     });

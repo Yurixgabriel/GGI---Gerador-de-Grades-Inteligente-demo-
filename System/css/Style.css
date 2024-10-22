@@ -3,6 +3,18 @@
     padding: 0%;
     box-sizing: border-box;
 }
+*::-webkit-scrollbar {
+    width: 4px;
+}
+  
+*::-webkit-scrollbar-track {
+    background: none;
+}
+  
+*::-webkit-scrollbar-thumb {
+    background-color: #064469;
+    border-radius: 6px;
+}
 
 body {
     width: 100vw;
@@ -27,7 +39,7 @@ body {
 }
 
 .navBar img {
-    width: 70px;
+    width: 60px;
 }
 
 .btnPassos {

@@ -1,0 +1,539 @@
+/*GERAL*/
+.titulos_passos {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    color: #064469;
+    padding: 0%;
+    margin: 0%;
+}
+
+.button_pronto {
+    width: 100%;
+    height: 100%;
+    margin-top: 24px;
+    padding: 3px 12px;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #fafffb;
+    background: #064469;
+    border: 3px solid #064469;
+    border-radius: 6px;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+.button_pronto:hover {
+    background: none;
+    color: #064469;
+}
+
+.modal_meio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.listStyleNone {
+    list-style: none;
+}
+
+.add {
+    height: 26px;
+    width: 26px;
+    padding: 0%;
+    font-size: 10px;
+    background: #064469;
+    border: 2px solid #064469;
+    color: whitesmoke;
+    border-radius: 50%;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+.add:hover {
+    background: none;
+    color: #064469;
+}
+
+
+/*ETAPA 1*/
+.passo-1_B {
+    width: 100%;
+    height: 100%;
+    margin-top: 20px;
+}
+.passo-1_B h3 {
+    margin: 0;
+}
+
+.dias_de_aula {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: 5px;
+    border-bottom: 3px solid #064469;
+}
+.btn_dias {
+    width: 50px;
+    background: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #064469;
+    border: 2px solid #064469;
+    border-radius: 6px;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn_dias:hover {
+    border: 2px solid #5790AB;
+    background: #5790AB;
+    color: #fafffb;
+}
+.btn_dias.pressionado {
+    background: #064469;
+    color: #fafffb;
+}
+.btn_dias.pressionado:hover {
+    background: #5790AB;
+}
+
+.dias_de_aula div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.dias_de_aula h6 {
+    margin: 0;
+    color: #064469;
+}
+
+.passo-1_C {
+    width: 100%;
+    height: 100%;
+    margin-top: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.passo-1_C div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.passo-1_C div h3 {
+    margin: 0%;
+    padding: 0%;
+}
+
+.lista_passo-1 {
+    height: 250px;
+    padding: 0%;
+    margin: 0%;
+
+    overflow-y: scroll;
+}
+.H, .T {
+    width: 180px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #064469;
+    text-align: center;
+    background: none;
+    border: 2px solid #064469;
+    border-radius: 5px;
+    margin-bottom: 4px;
+}
+.inte {
+    margin: 0%;
+    margin-right: 4px;
+    margin-bottom: -6px;
+}
+
+.passo-1_add {
+    padding: 2px 6px;
+
+    color: #fafffb;
+    background: #064469;
+    border: 2px solid #064469;
+    border-radius: 50%;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+.passo-1_add:hover {
+    background: none;
+    color: #064469;
+}
+
+
+/*ETAPA 2*/
+.passo-2_B {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.listaProfessores {
+    height: 300px;
+    width: 550px;
+    padding: 6px 10px;
+    margin: 0%;
+
+    overflow-y: scroll;
+}
+.P {
+    width: 100%;
+    margin-bottom: 3px;
+    display: flex;
+    justify-content: space-around;
+}
+.listaProfessores input {
+    width: 172px;
+    height: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #064469;
+    background: none;
+    border: 2px solid #064469;
+    border-radius: 5px;
+    margin-bottom: 4px;
+}
+.listaProfessores input::placeholder {
+    color: #9CCDDB;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.Turmas {
+    max-width: 180px;
+    width: 100%;
+    background: none;
+}
+.select-btn {
+    display: flex;
+    height: 20px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1px 4px;
+
+    background: none;
+    border: 2px solid #064469;
+    border-radius: 5px;
+    margin-bottom: 4px;
+
+    cursor: pointer;
+}
+.select-btn .btn-text {
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #9CCDDB;
+
+    transition: 0.3s;
+}
+.select-btn.open .btn-text {
+    color: #064469;
+}
+.select-btn .arrow-dwn {
+    display: flex;
+    height: 14px;
+    width: 14px;
+    align-items: center;
+    justify-content: center;
+    background: #064469;
+    border-radius: 50%;
+    color: whitesmoke;
+    font-size: 8px;
+
+    transition: 0.3s;
+}
+.select-btn.open .arrow-dwn {
+    transform: rotate(-180deg);
+}
+.list-turmas {
+    position: absolute;
+    width: 180px;
+    max-height: 120px;
+    overflow-y: scroll;
+    padding: 0%;
+    background-color: whitesmoke;
+    box-shadow: 0px 2px 6px black;
+    border-radius: 5px;
+
+    display: none;
+    animation: dropDown .3s;
+}
+@keyframes dropDown {
+    from {
+        opacity: 0;
+        height: 0px;
+    }
+    to {
+        opacity: 1;
+        height: 120px;
+    }
+}
+.select-btn.open ~ .list-turmas {
+    display: block;
+}
+.list-turmas .turma {
+    margin: 4px;
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+.list-turmas .turma:hover {
+    background: rgb(191, 227, 233);
+}
+.turma .turma-text {
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #064469;
+}
+.turma .checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 14px;
+    width: 14px;
+    border-radius: 4px;
+    margin-right: 8px;
+    border: 1px solid #9CCDDB;
+    
+    transition: all 0.3s ease-in-out;
+}
+.checkbox .check-icon {
+    font-size: 11px;
+    color: whitesmoke;
+    transform: scale(0);
+    transition: all 0.3s ease-in-out;
+}
+.turma.checked .check-icon {
+    transform: scale(1);
+}
+.turma.checked .checkbox {
+    background: #064469;
+    border: 1px solid #064469;
+}
+
+.passo-2_add {
+    padding: 2px 6px;
+    margin-top: 2px;
+
+    color: #fafffb;
+    background: #064469;
+    border: 2px solid #064469;
+    border-radius: 4px;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+.passo-2_add:hover {
+    background: none;
+    color: #064469;
+}
+
+
+/*ETAPA 3*/
+.blocos_disponibilidade {
+    max-height: 400px;
+    padding: 0%;
+    margin: 0%;
+
+    overflow-y: scroll;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.blocos_disponibilidade li {
+    margin: 10px;
+}
+
+.bloco {
+    width: 320px;
+    height: 200px;
+    padding: 4px 0px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px #064469;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #064469;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.bloco h4 {
+    margin-top: 10px;
+    margin-bottom: 0%;
+}
+.bloco h5 {
+    margin-bottom: 6px;
+}
+
+.grade_disponibilidade {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.subGrade_disponibilidade {
+    width: 96%;
+    max-height: 140px;
+    padding-left: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: top;
+
+    border-left: 3px solid #064469;
+    border-right: 3px solid #064469;
+    border-radius: 10px;
+
+    overflow-y: scroll;
+}
+
+.disponibilidade{
+    height: 100%;
+    padding-top: 4px;
+}
+.disponibilidade i {
+    font-size: 14px;
+    color: #064469;
+}
+
+.listDisponibilidade {
+    padding: 0%;
+    margin-top: 4px;
+}
+
+.btnDesmarcado {
+    width: 30px;
+    padding: 0%;
+    margin: 0%;
+    
+    padding: 2px 0px;
+    background: none;
+    border: 2px solid #064469;
+    border-radius: 4px;
+    color: #064469;
+    font-size: 9px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btnDesmarcado:hover {
+    color: #fafffb;
+    background: #5790AB;
+    border: 2px solid #5790AB;
+}
+
+.btnMarcado {
+    background: #064469;
+    border: 2px solid #064469;
+    color: whitesmoke;
+}
+.btnMarcado:hover {
+    color: #fafffb;
+    background: #5790AB;
+    border: 2px solid #5790AB;
+}
+
+
+/*ETAPA 4*/
+.listQuantidadeAulas {
+    padding: 0%;
+    margin: 0%;
+    list-style: none;
+
+    max-height: 400px;
+    overflow-y: scroll;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.listQuantidadeAulas_li {
+    width: 300px;
+    height: 150px;
+    padding: 10px 4px;
+    margin: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px #064469;
+}
+
+.gradeQuantidadeAulas {
+    width: 100%;
+    height: 100%;
+    margin: 0%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.gradeQuantidadeAulas h4 {
+    padding: 2px 0px;
+    margin-top: 4px;
+}
+
+.listGradeQuantidadeAulas {
+    padding: 0%;
+    margin: 0%;
+    list-style: none;
+
+    max-height: 100px;
+    overflow-y: scroll;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.itemTurma {
+    width: 80px;
+    padding-left: 4px;
+    margin: 3px 3px;
+    
+    border: 2px solid #064469;
+    border-radius: 4px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.itemTurma input {
+    width: 20px;
+    padding: 0%;
+    text-align: center;
+
+    background: none;
+    border: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #064469;
+}
+.itemTurma input::placeholder {
+    color: #064469;
+}
