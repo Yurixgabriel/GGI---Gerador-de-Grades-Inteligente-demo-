@@ -69,7 +69,7 @@ function btnProntoPasso1() {
             if(colunas[iOptC].value != "") {
                 var Ctext = colunas[iOptC].value;
         
-                var quant = "optionTurmaProf-" + iOpt;
+                var quant = "optionTurmaProf-" + (iOpt + 1);
                 var liOpt = document.createElement("li");
                 liOpt.classList.add("turma", quant);
 
@@ -280,51 +280,54 @@ function btnProntoPasso2() {
 
 // ETAPA 3
 function btnProntoPasso3() {
-    /*RESET*/
+    /* RESET */
     var listQuantidadeAulas_li = document.getElementsByClassName("listQuantidadeAulas_li");
-    for(var i = listQuantidadeAulas_li.length - 1; i >= 0; i--) {listQuantidadeAulas_li[i].remove()}
+    for (var i = listQuantidadeAulas_li.length - 1; i >= 0; i--) {
+        listQuantidadeAulas_li[i].remove();
+    }
 
     const list = document.getElementById("listQuantidadeAulas");
-    var prof = document.querySelectorAll(".P");
-    var nome = document.querySelectorAll(".nomeProf");
-    var materia = document.querySelectorAll(".materiaProf");
+    var prof = document.querySelectorAll(".P"); // Seleciona os professores
+    var nome = document.querySelectorAll(".nomeProf"); // Seleciona os nomes dos professores
+    var materia = document.querySelectorAll(".materiaProf"); // Seleciona as matérias dos professores
 
-    for(var i=0; i < prof.length; i++) {
-        var nomeText = nome[i].value;
+    for(i=0; i < prof.length; i++) {
+        var nomeText = nome[i].value; // Obtém o nome do professor
 
-        if(nomeText != "") {
+        if(nomeText !== "") {
             var li1 = document.createElement("li");
-            li1.classList = "listQuantidadeAulas_li";
+            li1.classList.add("listQuantidadeAulas_li");
 
             var div = document.createElement("div");
-            div.classList = "gradeQuantidadeAulas";
+            div.classList.add("gradeQuantidadeAulas");
 
             var h4 = document.createElement("h4");
-            h4.classList = "titulos_passos";
+            h4.classList.add("titulos_passos");
             var h4Text = document.createTextNode("- - - - - - - - AULAS - - - - - - - -");
             h4.appendChild(h4Text);
 
             var ul = document.createElement("ul");
-            ul.classList = "listGradeQuantidadeAulas scroll";
+            ul.classList.add("listGradeQuantidadeAulas", "scroll");
 
-            var quant = document.querySelectorAll(".turma.optionTurmaProf-" + i);
+            var quant = document.querySelectorAll(".turma.optionTurmaProf-" + (i + 1));
 
-            for(var j=0; j < quant.length; j++) {
+            for (var j = 0; j < quant.length; j++) {
                 var marcador = quant[j].className;
-                var span = document.querySelectorAll(".turma-text.nomeSpanTurma-" + i);
-                
-                if(marcador.indexOf('checked QuantTurma-' + i) != -1) {
+                var span = document.querySelectorAll(".turma-text.nomeSpanTurma-" + (i + 1));
+
+                // Verifica se a turma foi marcada como 'checked' e pertence ao professor atual
+                if (marcador.indexOf('checked') !== -1 && marcador.indexOf('QuantTurma-' + (i + 1)) !== -1) {
                     var li2 = document.createElement("li");
                     li2.classList = "itemTurma";
 
                     var h6 = document.createElement("h6");
                     h6.classList = "titulos_passos";
-                    var spanText = document.createTextNode(span[j].textContent);
+                    var spanText = document.createTextNode(span[j].textContent); // Obtém o nome da turma
                     h6.appendChild(spanText);
 
                     var input = document.createElement("input");
                     input.type = "text";
-                    input.placeholder = "0";
+                    input.placeholder = "0"; // Espaço para inserir a quantidade de aulas
 
                     li2.appendChild(h6);
                     li2.appendChild(input);
@@ -332,12 +335,14 @@ function btnProntoPasso3() {
                 }
             }
 
+            // Adiciona a identificação do professor e matéria
             var apelido = nome[i].value + " - " + materia[i].value;
             var h5 = document.createElement("h5");
             h5.classList = "titulos_passos";
             var h5Text = document.createTextNode(apelido);
             h5.appendChild(h5Text);
 
+            // Adiciona todos os elementos criados à lista principal
             div.appendChild(h4);
             div.appendChild(ul);
             div.appendChild(h5);
@@ -345,4 +350,73 @@ function btnProntoPasso3() {
             list.appendChild(li1);
         }
     }
+}
+
+// ETAPA 4
+function btnProntoPasso4() {
+    const alertModal = document.getElementById("alertModal");
+
+    // Limpa o content da janela de alerta
+    const alertContent = document.getElementById("alertModalContent");
+    alertContent.innerHTML = "";
+
+    // Verifica e compara as informações
+    const prof = document.querySelectorAll(".nomeProf")
+    const materiaProf = document.querySelectorAll(".materiaProf");
+    const arrayDisp = ['DomB', 'SegB', 'TerB', 'QuaB', 'QuiB', 'SexB', 'SabB']
+    
+    // Verifica se a quantidade de aulas que o professor deve dar é equivalente a disponibilidade que ele possui
+    for(iPV=0; iPV < prof.length; iPV++) {
+        if(prof[iPV].value !== "") {
+            let quantDisp = 0;
+            let quantAulas = 0;
+
+            for(a=0; a < arrayDisp.length; a++) {
+                let classDisp = "."+arrayDisp[a]+iPV;
+                let celulaDisp = document.querySelectorAll(classDisp);
+                
+                for(b=0; b < celulaDisp.length; b++) {
+                    if(celulaDisp[b].checked) {
+                        quantDisp++;
+                    }
+                }
+            }
+
+            const listAulas = document.querySelectorAll(".listGradeQuantidadeAulas");
+            let listAulasB = listAulas[iPV];
+            let itensAulas = listAulasB.querySelectorAll(".itemTurma input");
+
+            for (let c = 0; c < itensAulas.length; c++) {
+                quantAulas = quantAulas + parseInt(itensAulas[c].value);
+            }
+
+            var comparacao = quantAulas - quantDisp;
+            let nome = prof[iPV].value;
+            let materia = materiaProf[iPV].value;
+
+            if(quantAulas > quantDisp) {
+                var span = document.createElement("span");
+                span.classList.add("boxAlert");
+                var p = document.createElement("p");
+                p.textContent = "O(A) " + nome + " de " + materia + " tem " + comparacao + " aulas a mais do que dias disponivéis para lecionar."
+                span.appendChild(p);
+                alertContent.appendChild(span);
+                alertModal.classList.add('mostrar');
+            }
+        }
+    }
+
+    // Modal de alerta
+    if(alertModal) {
+        alertModal.addEventListener('click', (e) => {
+            if(e.target.id == "alertModal" || e.target.className == 'fechar') {
+                alertModal.classList.remove('mostrar');
+            }
+        });
+    }
+}
+
+// MONTAGEM
+function geradorGrade() {
+    
 }

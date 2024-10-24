@@ -83,3 +83,14 @@
     width: 90%;
     text-align: center;
 }
+
+/*ALERTA*/
+.boxAlert p {
+    padding: 4px 10px;
+    margin: 6px;
+    background: rgba(145, 13, 13, 0.503);
+    border: 3px solid rgb(145, 13, 13);
+    border-radius: 6px;
+    font-family: 'Berlin Sans FB Regular';
+    color: #070f1e;
+}

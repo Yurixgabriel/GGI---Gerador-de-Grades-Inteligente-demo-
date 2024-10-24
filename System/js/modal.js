@@ -75,7 +75,4 @@ const butao4 = document.querySelector('.btnModalPasso4');
 butao4.addEventListener('click', () => iniciaModal4('modalPasso4'));
 
 
-/*ALERTA*/
-
-
 /*MANUAL*/

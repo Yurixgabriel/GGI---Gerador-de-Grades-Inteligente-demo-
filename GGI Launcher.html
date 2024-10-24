@@ -26,7 +26,7 @@
                 <button class="btnModalPasso3">Passo 3</button>
                 <button class="btnModalPasso4">Passo 4</button>
                 <span class="line"></span>
-                <button id="gerarGradeBtn">Gerar Grade</button>
+                <button onclick="geradorGrade()" id="gerarGradeBtn">Gerar Grade</button>
                 <button id="exportBtn">Exportar para PDF</button>
             </div>
 
@@ -273,17 +273,19 @@
                         <li class="listQuantidadeAulas_li"><div class="gradeQuantidadeAulas"><h4 class="titulos_passos">- - - - - - - - AULAS - - - - - - - -</h4></div></li>
                     </ul>
 
-                    <input onclick="passo4_pronto('passo-4')" class="button_pronto" type="button" value="Pronto">
+                    <input onclick="btnProntoPasso4()" class="button_pronto" type="button" value="Pronto">
                 </div>
             </div>
         </div>
 
-        <div id="alerta" class="modal_container">
+        <div id="alertModal" class="modal_container">
             <div class="bordinha">
                 <div class="sub-modal">
                     <button class="fechar">X</button>
 
-
+                    <div id="alertModalContent">
+                        <p>teste testado testando</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -296,6 +298,10 @@
 
                 </div>
             </div>
+        </div>
+
+        <div id="modalMontagem" class="modal_container">
+            
         </div>
         
         <script src="./System/js/exportPDF.js"></script>
