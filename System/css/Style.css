@@ -52,37 +52,6 @@ body {
     border-radius: 20px;
 }
 
-.btnVaiEVolta {
-    position: absolute;
-    bottom: 50%;
-    top: 50%;
-    right: -17%;
-    width: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.btnVaiEVolta button {
-    min-width: 40px;
-    min-height: 40px;
-    margin: 4px 0px;
-    background: rgb(176, 176, 176);
-    color: whitesmoke;
-    border: none;
-    border-radius: 50%;
-    transition: 0.3s;
-    cursor: pointer;
-}
-.btnVaiEVolta button:nth-child(1):hover {
-    background: #064469;
-    transform: translateY(-4px);
-}
-.btnVaiEVolta button:nth-child(2):hover {
-    background: #064469;
-    transform: translateY(4px);
-}
-
 .navBar img {
     width: 60px;
 }
@@ -201,5 +170,5 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: hidden;
+    overflow: scroll;
 }
