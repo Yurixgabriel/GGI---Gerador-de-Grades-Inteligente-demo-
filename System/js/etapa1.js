@@ -1,101 +1,55 @@
 /*DIAS DE AULA*/
-function grade_dom(Dom) {
-    var display1 = document.getElementById(Dom).style.display;
-    var btnDom = document.getElementById('btn_dom');
+function gradeDias(button, idDia, dia) {
+    // Obter a div onde as grades são criadas
+    const grade = document.getElementById("grade");
 
-    if(display1 == "none") {
-        document.getElementById(Dom).style.display = 'flex';
-        btnDom.classList.add('pressionado');
-    }
-    else {
-        document.getElementById(Dom).style.display = 'none';
-        btnDom.classList.remove('pressionado');
+    // Verificar se a div correspondente ao dia já existe
+    const existingDiv = document.getElementById(idDia);
+
+    if (existingDiv) {
+        // Se a div já existir, remove-a
+        grade.removeChild(existingDiv);
+        button.classList.remove("pressionado"); // Remover estilo do botão
+    } else {
+        // Se a div não existir, cria a nova div com o dia
+        const div1 = document.createElement("div");
+        div1.id = idDia;
+        div1.classList.add("grade");
+
+        const div2 = document.createElement("div");
+        div2.classList.add("titulo_grade");
+
+        const h4 = document.createElement("h4");
+        h4.textContent = "--- " + dia + " ---";
+
+        const table = document.createElement("table");
+        table.classList.add("tabela", "scroll");
+        table.cellSpacing = '6px';
+
+        const tbody = document.createElement("tbody");
+        tbody.classList.add("tbody");
+
+        const tr = document.createElement("tr");
+        tr.classList.add("linhaPrincipal");
+        tr.align = "center";
+
+        const td = document.createElement("td");
+        td.classList.add("logo918Table", "celulaGrade");
+        td.textContent = "~ 918 ~";
+
+        tr.appendChild(td);
+        tbody.appendChild(tr);
+        table.appendChild(tbody);
+        div2.appendChild(h4);
+        div1.appendChild(div2);
+        div1.appendChild(table);
+        grade.appendChild(div1);
+
+        button.classList.add("pressionado"); // Adicionar estilo ao botão pressionado
     }
 }
+  
 
-function grade_seg(Seg) {
-    var display2 = document.getElementById(Seg).style.display;
-    var btnSeg = document.getElementById('btn_seg');
-
-    if(display2 == "none") {
-        document.getElementById(Seg).style.display = 'flex';
-        btnSeg.classList.add('pressionado');
-    }
-    else {
-        document.getElementById(Seg).style.display = 'none';
-        btnSeg.classList.remove('pressionado');
-    }
-}
-
-function grade_ter(Ter) {
-    var display3 = document.getElementById(Ter).style.display;
-    var btnTer = document.getElementById('btn_ter');
-
-    if(display3 == "none") {
-        document.getElementById(Ter).style.display = 'flex';
-        btnTer.classList.add('pressionado');
-    }
-    else {
-        document.getElementById(Ter).style.display = 'none';
-        btnTer.classList.remove('pressionado');
-    }
-}
-
-function grade_qua(Qua) {
-    var display4 = document.getElementById(Qua).style.display;
-    var btnQua = document.getElementById('btn_qua');
-
-    if(display4 == "none") {
-        document.getElementById(Qua).style.display = 'flex';
-        btnQua.classList.add('pressionado');
-    }
-    else {
-        document.getElementById(Qua).style.display = 'none';
-        btnQua.classList.remove('pressionado');
-    }
-}
-
-function grade_qui(Qui) {
-    var display5 = document.getElementById(Qui).style.display;
-    var btnQui = document.getElementById('btn_qui');
-
-    if(display5 == "none") {
-        document.getElementById(Qui).style.display = 'flex';
-        btnQui.classList.add('pressionado');
-    }
-    else {
-        document.getElementById(Qui).style.display = 'none';
-        btnQui.classList.remove('pressionado');
-    }
-}
-
-function grade_sex(Sex) {
-    var display6 = document.getElementById(Sex).style.display;
-    var btnSex = document.getElementById('btn_sex');
-
-    if(display6 == "none") {
-        document.getElementById(Sex).style.display = 'flex';
-        btnSex.classList.add('pressionado');
-    }
-    else {
-        document.getElementById(Sex).style.display = 'none';
-        btnSex.classList.remove('pressionado');
-    }
-}
-
-function grade_sab(Sab) {
-    var display7 = document.getElementById(Sab).style.display;
-    var btnSab = document.getElementById('btn_sab');
-
-    if(display7 == "none") {
-        document.getElementById(Sab).style.display = 'flex';
-        btnSab.classList.add('pressionado');
-    }
-    else {
-        document.getElementById(Sab).style.display = 'none';
-        btnSab.classList.remove('pressionado');
-    }
-}
 
 /*ADD*/
 function addTurno() {

@@ -21,6 +21,10 @@
 }
 
 /*BLOCOS*/
+.linhaPrincipal .logo918Table {
+    color: #d0d7e168;
+}
+
 .linhaPrincipal td{
     background: #070f1e;
     font-family: 'Berlin Sans FB Bold';
@@ -37,6 +41,7 @@
     border-radius: 10px;
     color: #329D9C;
 }
+
 .celulaGrade p {
     margin: 2px 4px;
     font-family: 'Berlin Sans FB Bold'

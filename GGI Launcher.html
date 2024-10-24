@@ -38,25 +38,36 @@
         </div>
 
         <div id="grade">
-            <div class="grade">
-                <div id="sabado" class="gradeDias">
-                    <div class="titulo_grade"><h4>--- SÁBADO ---</h4></div>
+            <!--<div class="grade">
+                <div class="titulo_grade"><h4>--- SÁBADO ---</h4></div>
 
-                    <table id="sab_grade" class="scroll" cellspacing="6px">
-                        <tbody class="tbody">
-                            <tr class="linhaPrincipal" align="center">
-                                <td class="celulaGrade"><i class="fa-solid fa-clock"></i></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="grade">
-                <p>teste2</p>
-            </div>
-            <div class="grade">
-                <p>teste3</p>
-            </div>
+                <table class="tabela scroll" cellspacing="6px">
+                    <tbody class="tbody">
+                        <tr class="linhaPrincipal" align="center">
+                            <td class="logo918Table celulaGrade">~ 918 ~</td>
+                            <td class="celulaGrade">teste</td>
+                            <td class="celulaGrade">teste</td>
+                            <td class="celulaGrade">teste</td>
+                            <td class="celulaGrade">teste</td>
+                            <td class="celulaGrade">teste</td>
+                            <td class="celulaGrade">teste</td>
+                            <td class="celulaGrade">teste</td>
+                        </tr>
+                        <tr align="center">
+                            <td class="celulaGrade turnos">teste</td>
+                            <td class="celulaGrade">teste teste</br>teste</td>
+                            <td class="celulaGrade">teste</td>
+                            <td class="celulaGrade">teste</td>
+                            <td class="celulaGrade">teste</td>
+                            <td class="celulaGrade">teste</td>
+                            <td class="celulaGrade">teste</td>
+                            <td class="celulaGrade">teste</td>
+                            <td class="celulaGrade">teste</td>
+                            <td class="celulaGrade">teste</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>-->
         </div>
 
         <!--Janelas Modal-->
@@ -68,13 +79,13 @@
                     <div class="modal_meio">
                         <div class="passo-1_B">
                             <div id="dias_de_aula" class="dias_de_aula">
-                                <input onclick="grade_dom('domingo')" id="btn_dom" class="btn_dias" type="button" value="dom">
-                                <input onclick="grade_seg('segunda')" id="btn_seg" class="btn_dias" type="button" value="seg">
-                                <input onclick="grade_ter('terca')" id="btn_ter" class="btn_dias" type="button" value="ter">
-                                <input onclick="grade_qua('quarta')" id="btn_qua" class="btn_dias" type="button" value="qua">
-                                <input onclick="grade_qui('quinta')" id="btn_qui" class="btn_dias" type="button" value="qui">
-                                <input onclick="grade_sex('sexta')" id="btn_sex" class="btn_dias" type="button" value="sex">
-                                <input onclick="grade_sab('sabado')" id="btn_sab" class="btn_dias" type="button" value="sab">
+                                <input onclick="gradeDias(this, 'diaDomGrade', 'DOMINGO')" class="btn_dias" type="button" value="dom">
+                                <input onclick="gradeDias(this, 'diaSegGrade', 'SEGUNDA')" class="btn_dias" type="button" value="seg">
+                                <input onclick="gradeDias(this, 'diaTerGrade', 'TERÇA')" class="btn_dias" type="button" value="ter">
+                                <input onclick="gradeDias(this, 'diaQuaGrade', 'QUARTA')" class="btn_dias" type="button" value="qua">
+                                <input onclick="gradeDias(this, 'diaQuiGrade', 'QUINTA')" class="btn_dias" type="button" value="qui">
+                                <input onclick="gradeDias(this, 'diaSexGrade', 'SEXTA')" class="btn_dias" type="button" value="sex">
+                                <input onclick="gradeDias(this, 'diaSabGrade', 'SÁBADO')" class="btn_dias" type="button" value="sab">
                             </div>
 
                             <h3 class="titulos_passos modal_meio">Dias</h3>
@@ -121,7 +132,7 @@
                         </div>
                     </div>
 
-                    <input onclick="passo1_pronto('passo-1')" class="button_pronto" type="button" value="Pronto">
+                    <input onclick="btnProntoPasso1()" class="button_pronto" type="button" value="Pronto">
                 </div>
             </div>
         </div>
@@ -138,7 +149,7 @@
                             <ul id="listaProfessores" class="listaProfessores scroll listStyleNone">
                                 <li class="P">
                                     <input class="nomeProf" type="text" placeholder="Nome" name="nome">
-                                    <input class="materiaProf disciplina" type="text" placeholder="Materia" name="materia" list="materias">
+                                    <input class="materiaProf disciplina" type="text" placeholder="Matéria" name="materia" list="materias">
 
                                     <div id="dropT1" class="Turmas" style="position: inherit;">
                                         <div onclick="drop1('dropT1')" id="btnS-1" class="select-btn">
@@ -153,7 +164,7 @@
                                 </li>
                                 <li class="P">
                                     <input class="nomeProf" type="text" placeholder="Nome" name="nome">
-                                    <input class="materiaProf disciplina" class="disciplina" type="text" placeholder="Materia" name="materia" list="materias">
+                                    <input class="materiaProf disciplina" type="text" placeholder="Matéria" name="materia" list="materias">
 
                                     <div id="dropT2" class="Turmas" style="position: inherit;">
                                         <div onclick="drop2('dropT2')" id="btnS-2" class="select-btn">
@@ -168,7 +179,7 @@
                                 </li>
                                 <li class="P">
                                     <input class="nomeProf" type="text" placeholder="Nome" name="nome">
-                                    <input class="materiaProf disciplina" class="disciplina" type="text" placeholder="Materia" name="materia" list="materias">
+                                    <input class="materiaProf disciplina" type="text" placeholder="Matéria" name="materia" list="materias">
 
                                     <div id="dropT3" class="Turmas" style="position: inherit;">
                                         <div onclick="drop3('dropT3')" id="btnS-3" class="select-btn">
@@ -183,7 +194,7 @@
                                 </li>
                                 <li class="P">
                                     <input class="nomeProf" type="text" placeholder="Nome" name="nome">
-                                    <input class="materiaProf disciplina" class="disciplina" type="text" placeholder="Materia" name="materia" list="materias">
+                                    <input class="materiaProf disciplina" type="text" placeholder="Matéria" name="materia" list="materias">
 
                                     <div id="dropT4" class="Turmas" style="position: inherit;">
                                         <div onclick="drop4('dropT4')" id="btnS-4" class="select-btn">
@@ -198,7 +209,7 @@
                                 </li>
                                 <li class="P">
                                     <input class="nomeProf" type="text" placeholder="Nome" name="nome">
-                                    <input class="materiaProf disciplina" class="disciplina" type="text" placeholder="Materia" name="materia" list="materias">
+                                    <input class="materiaProf disciplina" type="text" placeholder="Matéria" name="materia" list="materias">
 
                                     <div id="dropT5" class="Turmas" style="position: inherit;">
                                         <div onclick="drop5('dropT5')" id="btnS-5" class="select-btn">
@@ -213,7 +224,7 @@
                                 </li>
                                 <li class="P">
                                     <input class="nomeProf" type="text" placeholder="Nome" name="nome">
-                                    <input class="materiaProf disciplina" class="disciplina" type="text" placeholder="Materia" name="materia" list="materias">
+                                    <input class="materiaProf disciplina" type="text" placeholder="Matéria" name="materia" list="materias">
 
                                     <div id="dropT6" class="Turmas" style="position: inherit;">
                                         <div onclick="drop6('dropT6')" id="btnS-6" class="select-btn">
@@ -228,7 +239,7 @@
                                 </li>
                                 <li class="P">
                                     <input class="nomeProf" type="text" placeholder="Nome" name="nome">
-                                    <input class="materiaProf disciplina" class="disciplina" type="text" placeholder="Materia" name="materia" list="materias">
+                                    <input class="materiaProf disciplina" type="text" placeholder="Matéria" name="materia" list="materias">
 
                                     <div id="dropT7" class="Turmas" style="position: inherit;">
                                         <div onclick="drop7('dropT7')" id="btnS-7" class="select-btn">
@@ -243,7 +254,7 @@
                                 </li>
                                 <li class="P">
                                     <input class="nomeProf" type="text" placeholder="Nome" name="nome">
-                                    <input class="materiaProf disciplina" class="disciplina" type="text" placeholder="Materia" name="materia" list="materias">
+                                    <input class="materiaProf disciplina" type="text" placeholder="Matéria" name="materia" list="materias">
 
                                     <div id="dropT8" class="Turmas" style="position: inherit;">
                                         <div onclick="drop8('dropT8')" id="btnS-8" class="select-btn">
@@ -258,7 +269,7 @@
                                 </li>
                                 <li class="P">
                                     <input class="nomeProf" type="text" placeholder="Nome" name="nome">
-                                    <input class="materiaProf disciplina" class="disciplina" type="text" placeholder="Materia" name="materia" list="materias">
+                                    <input class="materiaProf disciplina" type="text" placeholder="Matéria" name="materia" list="materias">
 
                                     <div id="dropT9" class="Turmas" style="position: inherit;">
                                         <div onclick="drop9('dropT9')" id="btnS-9" class="select-btn">
@@ -340,5 +351,6 @@
         <script src="./System/js/modal.js"></script>
         <script src="./System/js/etapa1.js"></script>
         <script src="./System/js/etapa2.js"></script>
+        <script src="./System/js/gerador.js"></script>
     </body> 
 </html>
