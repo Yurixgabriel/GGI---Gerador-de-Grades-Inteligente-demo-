@@ -76,7 +76,7 @@ function btnProntoPasso1() {
                 var span1Opt = document.createElement("span");
                 span1Opt.classList.add("checkbox");
 
-                var clasOpt = "nomeSpanTurma-" + iOpt;
+                var clasOpt = "nomeSpanTurma-" + (iOpt+1);
                 var span2Opt = document.createElement("span");
                 span2Opt.classList.add("turma-text", clasOpt);
 
@@ -420,7 +420,7 @@ function btnProntoPasso4() {
 function geradorGrade() {
     // Abre o modal de carregamento
     const modalMontagem = document.getElementById("modalMontagem");
-    //modalMontagem.classList.add('mostrar');
+    // modalMontagem.classList.add('mostrar');
 
     // Montagem
     var grades = document.querySelectorAll(".grade");
@@ -428,48 +428,123 @@ function geradorGrade() {
     var profNome = document.querySelectorAll(".P .nomeProf");
     var profMateria = document.querySelectorAll(".P .materiaProf");
 
-    for(var i=0; i < grades.length; i++) {
-        var abrevDia = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"];
-        var colunas = grades[i].querySelectorAll(".celulaTurmaGrade"); 
-        var linhas = grades[i].querySelectorAll(".turnos");       
-        
-        for(var j=0; j < colunas.length; j++) {
-            console.log(colunas[j].textContent);
+    // Função para embaralhar um array
+    function embaralhar(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
 
-            for(var k=0; k < linhas.length; k++) {
-                console.log(linhas[k]);
-
-                /*var id = abrevDia[i] + "-C" + (j+1) + "-L" + (k+1);
-                var celula = document.getElementById(id);
-
-                if(celula.textContent == "---") {
-                    for(var l=0; l < prof.length; l++) {
-                        var turmas = document.querySelectorAll(".list-turmas .turma");
-                        var turmasText = document.querySelectorAll(".list-turmas .turma .turma-text");
-
-                        if(celula.textContent == "---") {
-                            if( não tá funcionando ) {
-                                if(turmasText[l].textContent == colunas[j].textContent) {
-                                    var celulaClean = document.getElementById(id);
-                                    celulaClean.textContent = "";
-
-                                    var strg = profNome[l].value;
-                                    var word_one = strg.split(' ').shift();
-                                    
-                                    var text = document.createTextNode(word_one + " - " + profMateria[l].value);
-
-                                    celula.appendChild(text);
-                                } else {
-                                    console.log("não é a mesma turma");
-                                }
-                            } else {
-                                console.log("não tá escalado na turma");
-                            }
-                        } else {
-                            console.log("não tá vazio");
-                        }
+    // Limpar células
+    cleanCelula();
+    function cleanCelula() {
+        for (let i = 0; i < grades.length; i++) {
+            var abrevDiaClean = ["dom", "seg", "ter", "qua", "qui", "sex", "sab"];
+            var colunasClean = grades[i].querySelectorAll(".celulaTurmaGrade");
+            var linhasClean = grades[i].querySelectorAll(".turnos");
+    
+            for (let j = 0; j < colunasClean.length; j++) {
+                for (let k = 0; k < linhasClean.length; k++) {
+                    var idCelulaClean = abrevDiaClean[i] + "_C" + (j + 1) + "L" + (k + 1);
+                    var celulaClean = document.getElementById(idCelulaClean);
+    
+                    if (celulaClean) {
+                        celulaClean.innerHTML = "";
                     }
-                }*/
+                }
+            }
+        }
+    }
+
+    // Passa por cada grade
+    for (var i = 0; i < grades.length; i++) {
+        var abrevDia = ["dom", "seg", "ter", "qua", "qui", "sex", "sab"];
+        var colunas = grades[i].querySelectorAll(".celulaTurmaGrade");
+        var linhas = grades[i].querySelectorAll(".turnos");
+
+        // Obtenha um array de índices de professores disponíveis
+        var indicesProfs = [];
+        for (let a = 0; a < prof.length; a++) {
+            if (profNome[a].value !== "") {
+                indicesProfs.push(a); // Adiciona o índice do professor ao array
+            }
+        }
+
+        // Passa por cada coluna da grade em questão
+        for (var j = 0; j < colunas.length; j++) {
+            // Embaralha os índices dos professores
+            indicesProfs = embaralhar(indicesProfs);
+            console.log(indicesProfs);
+
+            //passa por cada linha
+            for (var k = 0; k < linhas.length; k++) {
+                var idCelula = abrevDia[i] + "_C" + (j + 1) + "L" + (k + 1);
+                var celula = document.getElementById(idCelula);
+
+                if (celula && celula.textContent === "") {
+
+                    // Passa pelos índices de professores embaralhados
+                    for (let l = 0; l < indicesProfs.length; l++) {
+                        var quantProfApareceu = 0;
+
+                        // Passa por cada coluna da grade em questão
+                        for(m=0; m < colunas.length; m++) {
+                            var idCelulaComp = abrevDia[i] + "_C" + (m + 1) + "L" + (k + 1);
+                            var celulaComp = document.getElementById(idCelulaComp);
+
+                            const tb = document.createElement("tb");
+                            const nomeCompleto = profNome[indicesProfs[l]].value.split(" ");
+                            const primeiroNome = nomeCompleto[0];
+                            const segundoNomeAbreviado = nomeCompleto[1] ? nomeCompleto[1].substring(0, 1) + "." : "";
+                            const p1 = document.createElement("p");
+                            const p2 = document.createElement("p");
+                            p2.textContent = profMateria[indicesProfs[l]].value;
+                            p1.textContent = primeiroNome + " " + segundoNomeAbreviado;
+                            tb.appendChild(p1); 
+                            tb.appendChild(p2);
+                        
+                            if (tb.innerHTML.trim() === celulaComp.innerHTML.trim()) {
+                                quantProfApareceu++;
+                            }                            
+                        }
+
+                        if(quantProfApareceu === 0) {
+                            // Verifica se a celula ainda está vazia
+                            if (celula && celula.textContent === "") {
+
+                                // Verifica se o professor da aula pra turma
+                                var indice = indicesProfs[l]+1;
+                                var listBoxTurmas = document.querySelectorAll(".QuantTurma-" + indice);
+
+                                // Passa por todas as boxes de turmas do professor em questão
+                                for(m=0; m < listBoxTurmas.length; m++) {
+                                    var boxTurmaTextOpt = listBoxTurmas[m].querySelector(".nomeSpanTurma-"+(indicesProfs[l]+1))
+
+                                    if(colunas[j].textContent === boxTurmaTextOpt.textContent) {
+                                        const listAulas = document.querySelectorAll(".listGradeQuantidadeAulas");
+                                        let listAulasB = listAulas[l];
+                                        let itensAulas = listAulasB.querySelectorAll(".itemTurma input");
+                                        
+                                        
+
+                                        const nomeCompleto = profNome[indicesProfs[l]].value.split(" ");
+                                        const primeiroNome = nomeCompleto[0];
+                                        const segundoNomeAbreviado = nomeCompleto[1] ? nomeCompleto[1].substring(0, 1) + "." : "";
+                                        const p1 = document.createElement("p");
+                                        const p2 = document.createElement("p");
+                                        p2.textContent = profMateria[indicesProfs[l]].value;
+                                        p1.textContent = primeiroNome + " " + segundoNomeAbreviado;
+                                        celula.appendChild(p1); 
+                                        celula.appendChild(p2);
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
             }
         }
     }
