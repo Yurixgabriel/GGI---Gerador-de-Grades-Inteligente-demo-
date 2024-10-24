@@ -279,7 +279,7 @@ function btnProntoPasso2() {
 }
 
 // ETAPA 3
-function passo3_pronto() {
+function btnProntoPasso3() {
     /*RESET*/
     var listQuantidadeAulas_li = document.getElementsByClassName("listQuantidadeAulas_li");
     for(var i = listQuantidadeAulas_li.length - 1; i >= 0; i--) {listQuantidadeAulas_li[i].remove()}
@@ -307,14 +307,13 @@ function passo3_pronto() {
             var ul = document.createElement("ul");
             ul.classList = "listGradeQuantidadeAulas scroll";
 
-            var iNew = i + 1;
-            var quant = document.querySelectorAll(".turma.optionTurmaProf-" + iNew);
+            var quant = document.querySelectorAll(".turma.optionTurmaProf-" + i);
 
             for(var j=0; j < quant.length; j++) {
                 var marcador = quant[j].className;
-                var span = document.querySelectorAll(".turma-text.nomeSpanTurma-" + iNew);
+                var span = document.querySelectorAll(".turma-text.nomeSpanTurma-" + i);
                 
-                if(marcador.indexOf('checked QuantTurma-' + iNew) !== -1) {
+                if(marcador.indexOf('checked QuantTurma-' + i) != -1) {
                     var li2 = document.createElement("li");
                     li2.classList = "itemTurma";
 
