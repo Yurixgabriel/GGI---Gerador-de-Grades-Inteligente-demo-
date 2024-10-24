@@ -269,15 +269,15 @@ function addProf() {
     li.classList = "P";
 
     var input1 = document.createElement("input");
-    input1.classList = "nomeProf";
+    input1.classList.add("nomeProf");
     input1.type = "text";
     input1.placeholder = "Nome";
     input1.name = "nome";
 
     var input2 = document.createElement("input");
-    input2.classList = "materiaProf disciplina";
+    input2.classList.add("materiaProf", "disciplina");
     input2.type = "text";
-    input2.placeholder = "Materia";
+    input2.placeholder = "Matéria";
     input2.name = "materia";
     input2.list = "materias";
 
@@ -330,6 +330,7 @@ function addProf() {
 
     var span2 = document.createElement("span");
     span2.classList = "arrow-dwn";
+    span2.textContent = "▼";
     var icon = document.createElement("i");
     icon.classList = "fa-solid fa-chevron-down";
     span2.appendChild(icon);
@@ -359,12 +360,8 @@ function addProf() {
             var span2Opt = document.createElement("span");
             span2Opt.classList = "turma-text " + clasOpt;
 
-            var iTOpt = document.createElement("i");
-            iTOpt.classList = "fa-solid fa-check check-icon";
-
             var textTOpt = document.createTextNode(Ctext);
 
-            span1Opt.appendChild(iTOpt);
             span2Opt.appendChild(textTOpt);
             liOpt.appendChild(span1Opt);
             liOpt.appendChild(span2Opt);
