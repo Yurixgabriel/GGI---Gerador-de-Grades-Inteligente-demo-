@@ -23,7 +23,7 @@ function btnProntoPasso1() {
         for (j = 0; j < colunas.length; j++) {
             if (colunas[j].value != "") {
                 const td1 = document.createElement("td");
-                td1.classList.add("celulaGrade");
+                td1.classList.add("celulaGrade", "celulaTurmaGrade");
                 td1.textContent = colunas[j].value;
                 linhaP[i].appendChild(td1);
                 contColuns++;
@@ -418,5 +418,59 @@ function btnProntoPasso4() {
 
 // MONTAGEM
 function geradorGrade() {
-    
+    // Abre o modal de carregamento
+    const modalMontagem = document.getElementById("modalMontagem");
+    //modalMontagem.classList.add('mostrar');
+
+    // Montagem
+    var grades = document.querySelectorAll(".grade");
+    var prof = document.querySelectorAll(".P");
+    var profNome = document.querySelectorAll(".P .nomeProf");
+    var profMateria = document.querySelectorAll(".P .materiaProf");
+
+    for(var i=0; i < grades.length; i++) {
+        var abrevDia = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"];
+        var colunas = grades[i].querySelectorAll(".celulaTurmaGrade"); 
+        var linhas = grades[i].querySelectorAll(".turnos");       
+        
+        for(var j=0; j < colunas.length; j++) {
+            console.log(colunas[j].textContent);
+
+            for(var k=0; k < linhas.length; k++) {
+                console.log(linhas[k]);
+
+                /*var id = abrevDia[i] + "-C" + (j+1) + "-L" + (k+1);
+                var celula = document.getElementById(id);
+
+                if(celula.textContent == "---") {
+                    for(var l=0; l < prof.length; l++) {
+                        var turmas = document.querySelectorAll(".list-turmas .turma");
+                        var turmasText = document.querySelectorAll(".list-turmas .turma .turma-text");
+
+                        if(celula.textContent == "---") {
+                            if( não tá funcionando ) {
+                                if(turmasText[l].textContent == colunas[j].textContent) {
+                                    var celulaClean = document.getElementById(id);
+                                    celulaClean.textContent = "";
+
+                                    var strg = profNome[l].value;
+                                    var word_one = strg.split(' ').shift();
+                                    
+                                    var text = document.createTextNode(word_one + " - " + profMateria[l].value);
+
+                                    celula.appendChild(text);
+                                } else {
+                                    console.log("não é a mesma turma");
+                                }
+                            } else {
+                                console.log("não tá escalado na turma");
+                            }
+                        } else {
+                            console.log("não tá vazio");
+                        }
+                    }
+                }*/
+            }
+        }
+    }
 }
