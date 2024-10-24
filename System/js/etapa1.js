@@ -17,7 +17,10 @@ function gradeDias(button, idDia, dia) {
         div1.classList.add("grade");
 
         const div2 = document.createElement("div");
-        div2.classList.add("titulo_grade");
+        div2.classList.add("gradeContent");
+
+        const div3 = document.createElement("div");
+        div3.classList.add("titulo_grade");
 
         const h4 = document.createElement("h4");
         h4.textContent = "--- " + dia + " ---";
@@ -40,9 +43,10 @@ function gradeDias(button, idDia, dia) {
         tr.appendChild(td);
         tbody.appendChild(tr);
         table.appendChild(tbody);
-        div2.appendChild(h4);
+        div3.appendChild(h4);
+        div2.appendChild(div3);
+        div2.appendChild(table);
         div1.appendChild(div2);
-        div1.appendChild(table);
         grade.appendChild(div1);
 
         button.classList.add("pressionado"); // Adicionar estilo ao botão pressionado

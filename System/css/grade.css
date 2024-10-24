@@ -1,5 +1,13 @@
 .grade {
-    min-width: 96%;
+    min-width: 100%;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gradeContent {
+    min-width: 40%;
     min-height: 40%;
     max-width: 96%;
     max-height: 80%;
@@ -7,6 +15,9 @@
     padding: 1%;
     border: 6px solid #072D44;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /*DIAS*/
@@ -55,16 +66,20 @@
 
 /*OUTROS*/
 .titulo_grade {
-    padding: 10px 40%;
-    margin-bottom: 6px;
+    width: 100%;
+    padding: 16px 0;
     text-align: center;
     font-family: 'Berlin Sans FB Bold';
     color: #D0D7E1;
     letter-spacing: 6px;
     background: #072D44;
     border-radius: 6px;
+    display: flex;
+    justify-content: center;
 }
 .titulo_grade h4 {
     padding: 0;
     margin: 0;
+    width: 90%;
+    text-align: center;
 }

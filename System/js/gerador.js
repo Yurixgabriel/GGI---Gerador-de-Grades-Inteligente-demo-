@@ -9,6 +9,15 @@ function btnProntoPasso1() {
     for(i=0; i < tables.length; i++) {
         var contColuns = 0;
 
+        // Remover apenas as colunas dinâmicas da linha principal, mantendo o conteúdo fixo
+        while (linhaP[i].children.length > 1) {
+            linhaP[i].removeChild(linhaP[i].lastChild);
+        }
+
+        // Remover todas as linhas dinâmicas do tbody, exceto a linha principal
+        const linhasTbody = tables[i].querySelectorAll('tr:not(.linhaPrincipal)');
+        linhasTbody.forEach(linha => linha.remove());
+
         // Criar colunas
         for(j=0; j < colunas.length; j++) {
             if(colunas[j].value != "") {
