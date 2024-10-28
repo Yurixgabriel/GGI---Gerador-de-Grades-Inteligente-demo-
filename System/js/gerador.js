@@ -476,13 +476,13 @@ function geradorGrade() {
         for (var j = 0; j < colunas.length; j++) {
             // Embaralha os índices dos professores
             indicesProfs = embaralhar(indicesProfs);
-            console.log(indicesProfs);
 
-            //passa por cada linha
+            // Passa por cada linha da grade em questão
             for (var k = 0; k < linhas.length; k++) {
                 var idCelula = abrevDia[i] + "_C" + (j + 1) + "L" + (k + 1);
                 var celula = document.getElementById(idCelula);
 
+                // Verifica se a célula tá vazia
                 if (celula && celula.textContent === "") {
 
                     // Passa pelos índices de professores embaralhados
@@ -510,7 +510,9 @@ function geradorGrade() {
                             }                            
                         }
 
+                        // Verifica se o professor já foi adicionado naquela linha(horário)
                         if(quantProfApareceu === 0) {
+
                             // Verifica se a celula ainda está vazia
                             if (celula && celula.textContent === "") {
 
@@ -522,22 +524,115 @@ function geradorGrade() {
                                 for(m=0; m < listBoxTurmas.length; m++) {
                                     var boxTurmaTextOpt = listBoxTurmas[m].querySelector(".nomeSpanTurma-"+(indicesProfs[l]+1))
 
+                                    // Verifica se o nome da box(turma) é igual ao nome da coluna(turma) sendo preenchida
                                     if(colunas[j].textContent === boxTurmaTextOpt.textContent) {
-                                        const listAulas = document.querySelectorAll(".listGradeQuantidadeAulas");
-                                        let listAulasB = listAulas[l];
-                                        let itensAulas = listAulasB.querySelectorAll(".itemTurma input");
-                                        
-                                        
 
-                                        const nomeCompleto = profNome[indicesProfs[l]].value.split(" ");
-                                        const primeiroNome = nomeCompleto[0];
-                                        const segundoNomeAbreviado = nomeCompleto[1] ? nomeCompleto[1].substring(0, 1) + "." : "";
-                                        const p1 = document.createElement("p");
-                                        const p2 = document.createElement("p");
-                                        p2.textContent = profMateria[indicesProfs[l]].value;
-                                        p1.textContent = primeiroNome + " " + segundoNomeAbreviado;
-                                        celula.appendChild(p1); 
-                                        celula.appendChild(p2);
+                                        // Verifica a disponibilidade do professor em questão
+                                        const arrayDisp = ['DomB', 'SegB', 'TerB', 'QuaB', 'QuiB', 'SexB', 'SabB'];
+                                        var classDisp = document.querySelectorAll("."+arrayDisp[i]+indicesProfs[l]);
+                                        
+                                        // Verifica se o professor tem disponibilidade no horário sendo preenchido
+                                        if(classDisp[k].checked) {
+
+                                            // Verifica a quantidade de aulas que o professor em questão tem que lecionar
+                                            const listAulas = document.querySelectorAll(".listGradeQuantidadeAulas");
+                                            let listAulasB = listAulas[l];
+                                            let itensAulasNome = listAulasB.querySelectorAll(".itemTurma .titulos_passos");
+                                            let itensAulasQuant = listAulasB.querySelectorAll(".itemTurma input");
+                                            
+                                            // Passa por cada item da box de quantidade de aulas do professor em questão
+                                            for(IAN=0; IAN < itensAulasNome.length; IAN++) {
+
+                                                // Verifica se o nome do IAN (item de aulas) atual possue o mesmo nome da coluna atual
+                                                if(itensAulasNome[IAN].textContent === colunas[j].textContent) {
+                                                    var quantProfApareceuVerif = 0;
+                                                    console.log(itensAulasNome[IAN]);
+                                                    
+                                                    // Verifica quantas vezes o professor já apareceu ao todo
+                                                    // Passa por cada grade
+                                                    for(ii=0; ii < grades.length; ii++) {
+                                                        // Passa por cada linha em questão
+                                                        for(kk=0; kk < linhas.length; kk++) {
+                                                            var idCelulaVerif = abrevDia[ii] + "_C" + (j + 1) + "L" + (kk + 1);
+                                                            var celulaVerif = document.getElementById(idCelulaVerif);
+
+                                                            const tbVerif = document.createElement("tb");
+                                                            const nomeCompletoVerif = profNome[indicesProfs[l]].value.split(" ");
+                                                            const primeiroNomeVerif = nomeCompletoVerif[0];
+                                                            const segundoNomeAbreviadoVerif = nomeCompletoVerif[1] ? nomeCompletoVerif[1].substring(0, 1) + "." : "";
+                                                            const p1Verif = document.createElement("p");
+                                                            const p2Verif = document.createElement("p");
+                                                            p2Verif.textContent = profMateria[indicesProfs[l]].value;
+                                                            p1Verif.textContent = primeiroNomeVerif + " " + segundoNomeAbreviadoVerif;
+                                                            tbVerif.appendChild(p1Verif);
+                                                            tbVerif.appendChild(p2Verif);
+                                                        
+                                                            // Compara todas as células existentes com o professor em questão
+                                                            if (tbVerif.innerHTML.trim() === celulaVerif.innerHTML.trim()) {
+                                                                quantProfApareceuVerif++;
+                                                            }
+                                                        }
+                                                    }
+
+                                                    // Compara o valor final das vezes que o professor apareceu com a quantidade de aulas que ele tem que lecionar
+                                                    if(quantProfApareceuVerif < parseInt(itensAulasQuant[IAN].value)) {
+                                                        console.log("Quase final");
+
+                                                        // Gerenciador de equilibrio
+                                                        // Passa pela disponibilidade, vendo os dias que o professor tem para lecionar
+                                                        let contadorDiarioDisp = [];
+                                                        for(divI=0; divI < grades.length; divI++) {
+                                                            let classDispDiv = document.querySelectorAll("."+arrayDisp[divI]+indicesProfs[l]);
+
+                                                            for(CD=0; CD < classDisp.length; CD++) {
+                                                                if(classDispDiv[CD].checked) {
+                                                                    contadorDiarioDisp[divI] = divI;
+                                                                }
+                                                            }
+                                                        }
+                                                        console.log(contadorDiarioDisp);
+
+                                                        // Divide a quantidade de aulas que o professor deve aplicar na turma, pelos dias que tem disponivel
+                                                        let quantDiarioAulas = parseInt(itensAulasQuant[IAN].value)/contadorDiarioDisp.length;
+                                                        let quantProfApareceuDiv = 0;
+
+                                                        for(kkk=0; kkk < linhas.length; kkk++) {
+                                                            var idCelulaDiv = abrevDia[i] + "_C" + (j + 1) + "L" + (kkk + 1);
+                                                            var celulaDiv = document.getElementById(idCelulaDiv);
+
+                                                            const tbDiv = document.createElement("tb");
+                                                            const nomeCompletoDiv = profNome[indicesProfs[l]].value.split(" ");
+                                                            const primeiroNomeDiv = nomeCompletoDiv[0];
+                                                            const segundoNomeAbreviadoDiv = nomeCompletoDiv[1] ? nomeCompletoDiv[1].substring(0, 1) + "." : "";
+                                                            const p1Div = document.createElement("p");
+                                                            const p2Div = document.createElement("p");
+                                                            p2Div.textContent = profMateria[indicesProfs[l]].value;
+                                                            p1Div.textContent = primeiroNomeDiv + " " + segundoNomeAbreviadoDiv;
+                                                            tbDiv.appendChild(p1Div);
+                                                            tbDiv.appendChild(p2Div);
+                                                        
+                                                            // Compara todas as células existentes com o professor em questão
+                                                            if (tbDiv.innerHTML.trim() === celulaDiv.innerHTML.trim()) {
+                                                                quantProfApareceuDiv++;
+                                                            }
+                                                        }
+
+                                                        if(quantProfApareceuDiv < quantDiarioAulas) {
+                                                            const nomeCompleto = profNome[indicesProfs[l]].value.split(" ");
+                                                            const primeiroNome = nomeCompleto[0];
+                                                            const segundoNomeAbreviado = nomeCompleto[1] ? nomeCompleto[1].substring(0, 1) + "." : "";
+                                                            const p1 = document.createElement("p");
+                                                            const p2 = document.createElement("p");
+                                                            p2.textContent = profMateria[indicesProfs[l]].value;
+                                                            p1.textContent = primeiroNome + " " + segundoNomeAbreviado;
+                                                            celula.appendChild(p1); 
+                                                            celula.appendChild(p2);
+                                                            console.log("final");
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
