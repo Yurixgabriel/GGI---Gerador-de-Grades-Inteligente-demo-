@@ -406,6 +406,47 @@ function btnProntoPasso4() {
         }
     }
 
+    const turmas = document.querySelectorAll(".T");
+    const listAulasF = document.querySelectorAll(".listGradeQuantidadeAulas");
+    var turnos = document.querySelectorAll(".turnos");
+
+    // Verifica a quantidade total de aulas para a mesma turma
+    // Passa por cada input com as turmas
+    for(let a=0; a < turmas.length; a++) {
+        if(turmas[a].value !== "") {
+            let contadorAulasTotais = 0;
+
+            // Passa por cada professor e soma a quantidade total de aulas para aquela turma
+            for(let b=0; b < prof.length; b++) {
+                if(prof[b].value !== "") {
+                    let listAulasBF = listAulasF[b];
+                    let itensAulasNomeF = listAulasBF.querySelectorAll(".itemTurma .titulos_passos");
+                    let itensAulasQuantF = listAulasBF.querySelectorAll(".itemTurma input");
+
+                    // Passa por cada item turma
+                    for(let c=0; c < itensAulasNomeF.length; c++) {
+                        if(itensAulasNomeF[c].textContent === turmas[a].value) {
+                            contadorAulasTotais += parseInt(itensAulasQuantF[c].value);
+                        }
+                    }
+                }
+            }
+
+            // Cálcula a quantidade total de espaços para cada turma
+            let contadorEspaçosTurma = turnos.length;
+            if(contadorAulasTotais > contadorEspaçosTurma) {
+                let comparacao = contadorAulasTotais - contadorEspaçosTurma;
+                let span = document.createElement("span");
+                span.classList.add("boxAlert");
+                let p = document.createElement("p");
+                p.textContent = "A turma " + turmas[a].value + " tem " + comparacao + " a mais do que espaços para montar."
+                span.appendChild(p);
+                alertContent.appendChild(span);
+                alertModal.classList.add('mostrar');
+            }
+        }
+    }
+
     // Modal de alerta
     if(alertModal) {
         alertModal.addEventListener('click', (e) => {
@@ -416,12 +457,15 @@ function btnProntoPasso4() {
     }
 }
 
+// Contar as vezes tentadas
+var contadorVezesTentadas = 0;
 // Função delay para evitar execução rápida
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 // MONTAGEM
 async function geradorGrade() {
+    contadorVezesTentadas++;
     // Abre o modal de carregamento
     const modalMontagem = document.getElementById("modalMontagem");
     modalMontagem.classList.add('mostrar');
@@ -732,7 +776,33 @@ function modalMontagemControl(controlFim) {
     const modalAlertContent = document.getElementById("alertModalContent");
 
     if (controlFim === 1) {
-        setTimeout(geradorGrade, 600);
+        if(contadorVezesTentadas <= 100) {
+            setTimeout(geradorGrade, 600);
+        } else {
+            modalMontagem.classList.remove('mostrar');
+        
+            // Modal alerta
+            modalAlertContent.innerHTML = "";
+    
+            // Elementos da janela modal
+            let spanMsg = document.createElement("span");
+            let pMsg = document.createElement("p");
+            pMsg.textContent = "Foi tentado o máximo de vezes possível. Falha na criação!";
+            spanMsg.classList.add("boxAlert");
+            spanMsg.appendChild(pMsg);
+            modalAlertContent.appendChild(spanMsg);
+    
+            if(modalAlert) {
+                modalAlert.classList.add('mostrar');
+        
+                modalAlert.addEventListener('click', (e) => {
+                    if(e.target.id == modalAlert || e.target.className == 'fechar') {
+                        modalAlert.classList.remove('mostrar');
+                        contadorVezesTentadas = 0;
+                    }
+                });
+            }
+        }
     } else {
         modalMontagem.classList.remove('mostrar');
         
