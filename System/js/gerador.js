@@ -416,12 +416,16 @@ function btnProntoPasso4() {
     }
 }
 
+// Função delay para evitar execução rápida
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 // MONTAGEM
-function geradorGrade() {
+async function geradorGrade() {
     // Abre o modal de carregamento
     const modalMontagem = document.getElementById("modalMontagem");
-    // modalMontagem.classList.add('mostrar');
-
+    modalMontagem.classList.add('mostrar');
+    
     // Montagem
     var grades = document.querySelectorAll(".grade");
     var prof = document.querySelectorAll(".P");
@@ -440,22 +444,25 @@ function geradorGrade() {
     // Limpar células
     cleanCelula();
     function cleanCelula() {
-        for (let i = 0; i < grades.length; i++) {
-            var abrevDiaClean = ["dom", "seg", "ter", "qua", "qui", "sex", "sab"];
-            var colunasClean = grades[i].querySelectorAll(".celulaTurmaGrade");
-            var linhasClean = grades[i].querySelectorAll(".turnos");
-    
-            for (let j = 0; j < colunasClean.length; j++) {
-                for (let k = 0; k < linhasClean.length; k++) {
-                    var idCelulaClean = abrevDiaClean[i] + "_C" + (j + 1) + "L" + (k + 1);
-                    var celulaClean = document.getElementById(idCelulaClean);
-    
-                    if (celulaClean) {
-                        celulaClean.innerHTML = "";
+        // Adicionando delay para limpar células
+        setTimeout(() => {
+            for (let i = 0; i < grades.length; i++) {
+                var abrevDiaClean = ["dom", "seg", "ter", "qua", "qui", "sex", "sab"];
+                var colunasClean = grades[i].querySelectorAll(".celulaTurmaGrade");
+                var linhasClean = grades[i].querySelectorAll(".turnos");
+
+                for (let j = 0; j < colunasClean.length; j++) {
+                    for (let k = 0; k < linhasClean.length; k++) {
+                        var idCelulaClean = abrevDiaClean[i] + "_C" + (j + 1) + "L" + (k + 1);
+                        var celulaClean = document.getElementById(idCelulaClean);
+
+                        if (celulaClean) {
+                            celulaClean.innerHTML = "";
+                        }
                     }
                 }
             }
-        }
+        }, 300); // Delay de 300ms para limpar células
     }
 
     // Passa por cada grade
@@ -472,13 +479,13 @@ function geradorGrade() {
             }
         }
 
+        // Embaralha os índices dos professores
+        indicesProfs = embaralhar(indicesProfs);
         // Passa por cada coluna da grade em questão
         for (var j = 0; j < colunas.length; j++) {
-            // Embaralha os índices dos professores
-            indicesProfs = embaralhar(indicesProfs);
-
             // Passa por cada linha da grade em questão
             for (var k = 0; k < linhas.length; k++) {
+                await delay(400); // Delay de 100ms para cada célula
                 var idCelula = abrevDia[i] + "_C" + (j + 1) + "L" + (k + 1);
                 var celula = document.getElementById(idCelula);
 
@@ -545,9 +552,7 @@ function geradorGrade() {
 
                                                 // Verifica se o nome do IAN (item de aulas) atual possue o mesmo nome da coluna atual
                                                 if(itensAulasNome[IAN].textContent === colunas[j].textContent) {
-                                                    var quantProfApareceuVerif = 0;
-                                                    console.log(itensAulasNome[IAN]);
-                                                    
+                                                    var quantProfApareceuVerif = 0;                                                    
                                                     // Verifica quantas vezes o professor já apareceu ao todo
                                                     // Passa por cada grade
                                                     for(ii=0; ii < grades.length; ii++) {
@@ -576,24 +581,26 @@ function geradorGrade() {
 
                                                     // Compara o valor final das vezes que o professor apareceu com a quantidade de aulas que ele tem que lecionar
                                                     if(quantProfApareceuVerif < parseInt(itensAulasQuant[IAN].value)) {
-                                                        console.log("Quase final");
-
                                                         // Gerenciador de equilibrio
                                                         // Passa pela disponibilidade, vendo os dias que o professor tem para lecionar
                                                         let contadorDiarioDisp = [];
                                                         for(divI=0; divI < grades.length; divI++) {
                                                             let classDispDiv = document.querySelectorAll("."+arrayDisp[divI]+indicesProfs[l]);
+                                                            let A = 0;
 
                                                             for(CD=0; CD < classDisp.length; CD++) {
                                                                 if(classDispDiv[CD].checked) {
-                                                                    contadorDiarioDisp[divI] = divI;
+                                                                    A = 1;
                                                                 }
                                                             }
+
+                                                            if(A !== 0) {
+                                                                contadorDiarioDisp[contadorDiarioDisp.length] = divI;
+                                                            }
                                                         }
-                                                        console.log(contadorDiarioDisp);
 
                                                         // Divide a quantidade de aulas que o professor deve aplicar na turma, pelos dias que tem disponivel
-                                                        let quantDiarioAulas = parseInt(itensAulasQuant[IAN].value)/contadorDiarioDisp.length;
+                                                        let quantDiarioAulas = Math.ceil(parseInt(itensAulasQuant[IAN].value)/parseInt(contadorDiarioDisp.length));
                                                         let quantProfApareceuDiv = 0;
 
                                                         for(kkk=0; kkk < linhas.length; kkk++) {
@@ -627,7 +634,6 @@ function geradorGrade() {
                                                             p1.textContent = primeiroNome + " " + segundoNomeAbreviado;
                                                             celula.appendChild(p1); 
                                                             celula.appendChild(p2);
-                                                            console.log("final");
                                                         }
                                                     }
                                                 }
@@ -637,10 +643,116 @@ function geradorGrade() {
                                 }
                             }
                         }
-
                     }
                 }
             }
+        }
+    }
+
+    // Verificação final
+    // Passa por cada professor
+    setTimeout(revisaoFinal, 600);
+    function revisaoFinal() {
+        let controlFim = 0; // Inicializa como 0 para indicar que a função começou corretamente
+
+        // Função para definir controlFim e parar a execução
+        function definirErro() {
+            controlFim = 1;
+            modalMontagemControl(controlFim); // Chama o modal com erro
+            return; // Encerra a execução da função `geradorGrade`
+        }
+
+        // Obtenha um array de índices de professores disponíveis
+        let indicesProfs = [];
+        for (let a = 0; a < prof.length; a++) {
+            if (profNome[a].value !== "") {
+                indicesProfs.push(a); // Adiciona o índice do professor ao array
+            }
+        }
+
+        for(p=0; p < indicesProfs.length; p++) {
+            // Verifica a quantidade de aulas que o professor em questão tem que lecionar
+            const listAulasF = document.querySelectorAll(".listGradeQuantidadeAulas");
+            let listAulasBF = listAulasF[p];
+            let itensAulasNomeF = listAulasBF.querySelectorAll(".itemTurma .titulos_passos");
+            let itensAulasQuantF = listAulasBF.querySelectorAll(".itemTurma input");
+    
+            for(c=0; c < colunas.length; c++) {
+                // Passa por cada item da box de quantidade de aulas do professor em questão
+                for(i=0; i < itensAulasNomeF.length; i++) {
+    
+                    // Verifica se o nome do i(item de aulas) atual possue o mesmo nome da coluna atual
+                    if(itensAulasNomeF[i].textContent === colunas[c].textContent) {
+                        let quantProfApareceuF = 0;
+    
+                        // Verifica quantas vezes o professor já apareceu ao todo
+                        // Passa por cada grade
+                        for(ii=0; ii < grades.length; ii++) {
+                            // Passa por cada linha em questão
+                            for(kk=0; kk < linhas.length; kk++) {
+                                let idCelulaF = abrevDia[ii] + "_C" + (c + 1) + "L" + (kk + 1);
+                                let celulaF = document.getElementById(idCelulaF);
+    
+                                const tbF = document.createElement("tb");
+                                const nomeCompletoF = profNome[p].value.split(" ");
+                                const primeiroNomeF = nomeCompletoF[0];
+                                const segundoNomeAbreviadoF = nomeCompletoF[1] ? nomeCompletoF[1].substring(0, 1) + "." : "";
+                                const p1F = document.createElement("p");
+                                const p2F = document.createElement("p");
+                                p2F.textContent = profMateria[p].value;
+                                p1F.textContent = primeiroNomeF + " " + segundoNomeAbreviadoF;
+                                tbF.appendChild(p1F);
+                                tbF.appendChild(p2F);
+                            
+                                // Compara todas as células existentes com o professor em questão
+                                if (tbF.innerHTML.trim() === celulaF.innerHTML.trim()) {
+                                    quantProfApareceuF++;
+                                }
+                            }
+                        }
+    
+                        // Compara o valor final das vezes que o professor apareceu com a quantidade de aulas que ele tem que lecionar
+                        if(quantProfApareceuF !== parseInt(itensAulasQuantF[i].value)) {
+                            definirErro();
+                        }
+                    }
+                }
+            }
+        }
+
+        // Se não houve erro, finaliza com sucesso
+        modalMontagemControl(controlFim);
+        return;
+    }
+}
+
+function modalMontagemControl(controlFim) {
+    const modalMontagem = document.getElementById("modalMontagem");
+    const modalAlert = document.getElementById("alertModal");
+    const modalAlertContent = document.getElementById("alertModalContent");
+
+    if (controlFim === 1) {
+        setTimeout(geradorGrade, 600);
+    } else {
+        modalMontagem.classList.remove('mostrar');
+        
+        // Modal alerta
+        modalAlertContent.innerHTML = "";
+
+        // Elementos da janela modal
+        let pMsg = document.createElement("p");
+        pMsg.textContent = "A grade foi criada com sucesso!"
+        pMsg.classList.add("msgGradeSucesso");
+        modalAlertContent.appendChild(pMsg);
+
+        if(modalAlert) {
+            modalAlert.classList.add('mostrar');
+    
+            modalAlert.addEventListener('click', (e) => {
+                if(e.target.id == modalAlert || e.target.className == 'fechar') {
+                    modalAlert.classList.remove('mostrar');
+                }
+            });
         }
     }
 }
