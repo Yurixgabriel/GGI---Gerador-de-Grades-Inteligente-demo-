@@ -522,22 +522,22 @@ async function geradorGrade() {
                 indicesProfs.push(a); // Adiciona o índice do professor ao array
             }
         }
-
         // Embaralha os índices dos professores
         indicesProfs = embaralhar(indicesProfs);
-        // Passa por cada coluna da grade em questão
-        for (var j = 0; j < colunas.length; j++) {
-            // Passa por cada linha da grade em questão
-            for (var k = 0; k < linhas.length; k++) {
-                await delay(400); // Delay de 100ms para cada célula
-                var idCelula = abrevDia[i] + "_C" + (j + 1) + "L" + (k + 1);
-                var celula = document.getElementById(idCelula);
 
-                // Verifica se a célula tá vazia
-                if (celula && celula.textContent === "") {
+        // Passa pelos índices de professores embaralhados
+        for (let l = 0; l < indicesProfs.length; l++) {
 
-                    // Passa pelos índices de professores embaralhados
-                    for (let l = 0; l < indicesProfs.length; l++) {
+            // Passa por cada coluna da grade em questão
+            for (var j = 0; j < colunas.length; j++) {
+
+                // Passa por cada linha da grade em questão
+                for (var k = 0; k < linhas.length; k++) {
+                    var idCelula = abrevDia[i] + "_C" + (j + 1) + "L" + (k + 1);
+                    var celula = document.getElementById(idCelula);
+
+                    // Verifica se a célula tá vazia
+                    if (celula && celula.textContent === "") {
                         var quantProfApareceu = 0;
 
                         // Passa por cada coluna da grade em questão
@@ -558,6 +558,7 @@ async function geradorGrade() {
                         
                             if (tb.innerHTML.trim() === celulaComp.innerHTML.trim()) {
                                 quantProfApareceu++;
+                                await delay(200);
                             }                            
                         }
 
@@ -577,6 +578,7 @@ async function geradorGrade() {
 
                                     // Verifica se o nome da box(turma) é igual ao nome da coluna(turma) sendo preenchida
                                     if(colunas[j].textContent === boxTurmaTextOpt.textContent) {
+                                        await delay(200);
 
                                         // Verifica a disponibilidade do professor em questão
                                         const arrayDisp = ['DomB', 'SegB', 'TerB', 'QuaB', 'QuiB', 'SexB', 'SabB'];
@@ -587,7 +589,7 @@ async function geradorGrade() {
 
                                             // Verifica a quantidade de aulas que o professor em questão tem que lecionar
                                             const listAulas = document.querySelectorAll(".listGradeQuantidadeAulas");
-                                            let listAulasB = listAulas[l];
+                                            let listAulasB = listAulas[indicesProfs[l]];
                                             let itensAulasNome = listAulasB.querySelectorAll(".itemTurma .titulos_passos");
                                             let itensAulasQuant = listAulasB.querySelectorAll(".itemTurma input");
                                             
@@ -596,6 +598,8 @@ async function geradorGrade() {
 
                                                 // Verifica se o nome do IAN (item de aulas) atual possue o mesmo nome da coluna atual
                                                 if(itensAulasNome[IAN].textContent === colunas[j].textContent) {
+                                                    await delay(200);
+
                                                     var quantProfApareceuVerif = 0;                                                    
                                                     // Verifica quantas vezes o professor já apareceu ao todo
                                                     // Passa por cada grade
@@ -625,6 +629,7 @@ async function geradorGrade() {
 
                                                     // Compara o valor final das vezes que o professor apareceu com a quantidade de aulas que ele tem que lecionar
                                                     if(quantProfApareceuVerif < parseInt(itensAulasQuant[IAN].value)) {
+
                                                         // Gerenciador de equilibrio
                                                         // Passa pela disponibilidade, vendo os dias que o professor tem para lecionar
                                                         let contadorDiarioDisp = [];
@@ -635,7 +640,7 @@ async function geradorGrade() {
                                                             for(CD=0; CD < classDisp.length; CD++) {
                                                                 if(classDispDiv[CD].checked) {
                                                                     A = 1;
-                                                                }
+                                                                    }
                                                             }
 
                                                             if(A !== 0) {
@@ -646,6 +651,11 @@ async function geradorGrade() {
                                                         // Divide a quantidade de aulas que o professor deve aplicar na turma, pelos dias que tem disponivel
                                                         let quantDiarioAulas = Math.ceil(parseInt(itensAulasQuant[IAN].value)/parseInt(contadorDiarioDisp.length));
                                                         let quantProfApareceuDiv = 0;
+
+                                                        // Se a divisão for igual a 1, ele arredonda pra 2
+                                                        if(quantDiarioAulas === 1) {
+                                                            quantDiarioAulas = 2;
+                                                        }
 
                                                         for(kkk=0; kkk < linhas.length; kkk++) {
                                                             var idCelulaDiv = abrevDia[i] + "_C" + (j + 1) + "L" + (kkk + 1);
@@ -690,6 +700,8 @@ async function geradorGrade() {
                     }
                 }
             }
+
+            await delay(1000);
         }
     }
 
